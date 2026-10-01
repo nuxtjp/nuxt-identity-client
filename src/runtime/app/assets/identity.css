@@ -1,0 +1,59 @@
+:root {
+  --identity-ink: #17212b;
+  --identity-muted: #536273;
+  --identity-border: #d8e0e8;
+  --identity-action: #1258a5;
+  --identity-surface: #ffffff;
+  --identity-danger: #a32727;
+}
+
+.identity-card {
+  box-sizing: border-box;
+  width: min(100%, 44rem);
+  margin: 2rem auto;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  color: var(--identity-ink);
+  background: var(--identity-surface);
+  border: 1px solid var(--identity-border);
+  border-radius: 0.75rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.identity-card h1 { margin-top: 0; font-size: clamp(1.5rem, 4vw, 2rem); }
+.identity-card h2 { margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
+.identity-card button {
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  color: white;
+  background: var(--identity-action);
+  border: 2px solid var(--identity-action);
+  border-radius: 0.4rem;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+.identity-card button.secondary { color: var(--identity-action); background: white; }
+.identity-card button:focus-visible { outline: 3px solid #f3b51b; outline-offset: 2px; }
+.identity-card button:disabled { cursor: wait; opacity: 0.65; }
+.identity-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+.identity-list { padding-left: 1.25rem; }
+.identity-list--divided { padding: 0; list-style: none; }
+.identity-list--divided li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--identity-border);
+}
+.identity-list span { display: flex; flex-direction: column; }
+.identity-list small, .identity-details dt { color: var(--identity-muted); }
+.identity-list em { font-size: 0.85rem; font-style: normal; font-weight: 700; }
+.identity-details { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 1rem; }
+.identity-details dd { margin: 0; overflow-wrap: anywhere; }
+.identity-error { color: var(--identity-danger); font-weight: 650; }
+
+@media (max-width: 36rem) {
+  .identity-list--divided li { align-items: stretch; flex-direction: column; }
+}

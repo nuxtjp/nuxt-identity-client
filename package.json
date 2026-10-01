@@ -1,0 +1,57 @@
+{
+  "name": "@nuxtjp/identity-client",
+  "version": "0.1.0",
+  "description": "Provider-neutral identity UI and OIDC BFF security primitives for Nuxt",
+  "type": "module",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@10.29.3",
+  "engines": {
+    "node": "^22.0.0 || ^24.0.0",
+    "pnpm": ">=10 <11"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "playground",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE",
+    "NOTICE",
+    "LICENSE-PREVIOUS"
+  ],
+  "main": "./dist/module.mjs",
+  "types": "./dist/types.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    },
+    "./core": {
+      "types": "./dist/runtime/core/index.d.ts",
+      "import": "./dist/runtime/core/index.js"
+    }
+  },
+  "scripts": {
+    "build": "nuxt-module-build build && nuxt build playground",
+    "typecheck": "vue-tsc --noEmit --project tsconfig.json",
+    "test": "vitest run",
+    "prepack": "pnpm run build"
+  },
+  "peerDependencies": {
+    "nuxt": "^4.5.0",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@nuxt/kit": "4.5.0",
+    "@nuxt/schema": "4.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "1.0.2",
+    "@types/node": "24.12.0",
+    "nuxt": "4.5.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.6",
+    "vue": "3.5.39",
+    "vue-tsc": "3.2.8"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "repository": "nuxtjp/nuxt-identity-client",
+  "purpose": "ログイン、アカウント、認証方法、登録端末の画面を共通化できます。 / Provide consistent sign-in, account, authenticator and device-management screens in a Nuxt service.",
+  "responsibility_boundary": "Own the documented Nuxt/browser interface and its public contracts. Account authority, external effects, product state and production hosting remain explicit consumer responsibilities.",
+  "packages": [
+    {
+      "manifest": "package.json",
+      "package": "@nuxtjp/identity-client",
+      "ecosystem": "npm",
+      "description": "Provider-neutral identity UI and OIDC BFF security primitives for Nuxt",
+      "interfaces": {
+        "exports": {
+          ".": {
+            "types": "./dist/types.d.mts",
+            "import": "./dist/module.mjs"
+          },
+          "./core": {
+            "types": "./dist/runtime/core/index.d.ts",
+            "import": "./dist/runtime/core/index.js"
+          }
+        },
+        "bin": {},
+        "main": "./dist/module.mjs",
+        "types": "./dist/types.d.mts"
+      },
+      "declared_commands": {
+        "build": "nuxt-module-build build && nuxt build playground",
+        "typecheck": "vue-tsc --noEmit --project tsconfig.json",
+        "test": "vitest run && pnpm run test:dependency-security",
+        "prepack": "pnpm run build",
+        "test:dependency-security": "node --test scripts/dependency-security.check.cjs"
+      }
+    }
+  ],
+  "schema_definitions": [],
+  "test_sources": [
+    "src/runtime/core/bff.ts",
+    "test/bff.test.ts",
+    "test/oidc.test.ts",
+    "test/redirect.test.ts",
+    "test/session.test.ts",
+    "test/transaction.test.ts",
+    "test/ui-components.test.ts",
+    "test/ui-contract.test.ts"
+  ],
+  "example_sources": [
+    "playground/app.vue",
+    "playground/composables/useDemoLocale.ts",
+    "playground/nuxt.config.ts",
+    "playground/pages/account/devices.vue",
+    "playground/pages/account/index.vue",
+    "playground/pages/account/security.vue",
+    "playground/pages/auth/callback.vue",
+    "playground/pages/login.vue",
+    "playground/pages/logout.vue",
+    "playground/sample-data.ts"
+  ],
+  "workflow_definitions": [
+    {
+      "path": ".github/workflows/dependency-security.yml",
+      "jobs": [
+        {
+          "job": "security",
+          "condition": null,
+          "runs_on": "ubuntu-24.04",
+          "steps": [
+            {
+              "name": null,
+              "run": null,
+              "uses": "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "condition": null
+            },
+            {
+              "name": null,
+              "run": null,
+              "uses": "pnpm/action-setup@f520eceda224fe1a4aed5a2a27a194379a409996",
+              "condition": null
+            },
+            {
+              "name": null,
+              "run": null,
+              "uses": "actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38",
+              "condition": null
+            },
+            {
+              "name": null,
+              "run": "pnpm install --frozen-lockfile --ignore-scripts",
+              "uses": null,
+              "condition": null
+            },
+            {
+              "name": null,
+              "run": "pnpm run test",
+              "uses": null,
+              "condition": null
+            },
+            {
+              "name": null,
+              "run": "pnpm run build",
+              "uses": null,
+              "condition": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": ".github/workflows/oss-policy.yml",
+      "jobs": [
+        {
+          "job": "repository-policy",
+          "condition": null,
+          "runs_on": "ubuntu-latest",
+          "steps": [
+            {
+              "name": null,
+              "run": null,
+              "uses": "actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803",
+              "condition": null
+            },
+            {
+              "name": "Verify repository policy",
+              "run": "python3 .github/oss-policy-check.py",
+              "uses": null,
+              "condition": null
+            },
+            {
+              "name": "Verify policy regression tests",
+              "run": "cd .github && python3 -m unittest discover -s policy-tests",
+              "uses": null,
+              "condition": null
+            },
+            {
+              "name": "Check policy types",
+              "run": "python3 -m venv \"$RUNNER_TEMP/policy-types\"\n\"$RUNNER_TEMP/policy-types/bin/pip\" install -r .github/policy/requirements.txt\n\"$RUNNER_TEMP/policy-types/bin/mypy\" --strict .github/policy .github/oss-policy-check.py .github/policy-tests\n",
+              "uses": null,
+              "condition": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "evidence_policy": "Declarations and source paths are not proof of an executed acceptance. Exact CI head and result are recorded separately. No live accounts or production acceptance is inferred."
+}

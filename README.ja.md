@@ -116,3 +116,6 @@ pnpm exec nuxt dev playground --host 127.0.0.1
 
 Playgroundは合成IDと`.invalid`のメールアドレスだけを含みます。確認後はProcessを
 停止してください。このRepositoryから外部OIDC Providerへの通信や公開は行いません。
+
+Dependency updates: [repository policy](docs/dependency-updates.md).
+Registry releases: [version tags and GitHub OIDC](docs/registry-release.md).

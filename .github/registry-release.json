@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "repository": "nuxtjp/nuxt-identity-client",
+  "defaultBranch": "main",
+  "requiredWorkflows": [
+    "dependency-security.yml",
+    "oss-policy.yml"
+  ],
+  "packages": [
+    {
+      "ecosystem": "npm",
+      "manifest": "package.json",
+      "name": "@nuxtjp/identity-client",
+      "installDirectory": "."
+    }
+  ]
+}

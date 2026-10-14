@@ -63,5 +63,9 @@
       "braces@3.0.3": "patches/braces@3.0.3.patch",
       "node-forge@1.4.0": "patches/node-forge@1.4.0.patch"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuxtjp/nuxt-identity-client.git"
   }
 }

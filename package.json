@@ -17,7 +17,8 @@
     "SECURITY.md",
     "LICENSE",
     "NOTICE",
-    "LICENSE-PREVIOUS"
+    "LICENSE-PREVIOUS",
+    "third-party"
   ],
   "main": "./dist/module.mjs",
   "types": "./dist/types.d.mts",
